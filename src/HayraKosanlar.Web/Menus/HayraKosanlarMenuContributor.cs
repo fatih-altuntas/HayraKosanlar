@@ -29,6 +29,14 @@ namespace HayraKosanlar.Web.Menus
             var l = context.GetLocalizer<HayraKosanlarResource>();
 
             context.Menu.Items.Insert(0, new ApplicationMenuItem(HayraKosanlarMenus.Home, l["Menu:Home"], "~/"));
+            context.Menu.AddItem(
+                new ApplicationMenuItem(
+                "HelpRequests",
+                l["Menu:HelpRequests"],
+                icon: "fa fa-book",
+                url: "/HelpRequest"
+            )
+        );
         }
     }
 }

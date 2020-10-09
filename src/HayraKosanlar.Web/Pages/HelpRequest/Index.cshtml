@@ -1,0 +1,17 @@
+﻿@page
+@using HayraKosanlar.Localization
+@using HayraKosanlar.Web.Pages.HelpRequest
+@using Microsoft.Extensions.Localization
+@model HayraKosanlar.Web.Pages.HelpRequest.IndexModel
+@inject IStringLocalizer<HayraKosanlarResource> L
+@section scripts{
+    <abp-script src="/Pages/HelpRequest/Index.js" />
+}
+<abp-card>
+    <abp-card-header>
+        <h2>@L["HelpRequests"]</h2>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="HelpRequestsTable"></abp-table>
+    </abp-card-body>
+</abp-card>
