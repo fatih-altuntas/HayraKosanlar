@@ -8,7 +8,6 @@ namespace HayraKosanlar.HelpRequest
         public string Name { get; set; }
         public string Surname { get; set; }
         public string IdentityNumber { get; set; }
-        public int MyProperty { get; set; }
         public long TownId { get; set; }
         public string Birthplace { get; set; }
         public string MotherName { get; set; }

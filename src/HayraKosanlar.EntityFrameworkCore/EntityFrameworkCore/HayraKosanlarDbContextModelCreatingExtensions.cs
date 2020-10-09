@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace HayraKosanlar.EntityFrameworkCore
 {
@@ -11,11 +12,17 @@ namespace HayraKosanlar.EntityFrameworkCore
 
             /* Configure your own tables/entities inside here */
 
-            //builder.Entity<YourEntity>(b =>
+            builder.Entity<HelpRequest.HelpRequest>(b =>
+            {
+                b.ToTable("HelpRequest", HayraKosanlarConsts.DbSchema);
+                b.ConfigureByConvention(); //auto configure for the base class props
+                b.Property(x=> x.Name).IsRequired().HasMaxLength(128);
+            });
+            //builder.Entity<HelpRequest.HelpRequest>(b =>
             //{
-            //    b.ToTable(HayraKosanlarConsts.DbTablePrefix + "YourEntities", HayraKosanlarConsts.DbSchema);
+            //    b.ToTable(HayraKosanlarConsts.DbTablePrefix + "HelpRequest", HayraKosanlarConsts.DbSchema);
             //    b.ConfigureByConvention(); //auto configure for the base class props
-            //    //...
+            //    b.Property(x => x.Name).IsRequired().HasMaxLength(128);
             //});
         }
     }

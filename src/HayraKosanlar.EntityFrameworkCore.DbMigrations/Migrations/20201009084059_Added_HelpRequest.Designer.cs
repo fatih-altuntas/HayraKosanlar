@@ -4,15 +4,17 @@ using HayraKosanlar.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
 namespace HayraKosanlar.Migrations
 {
     [DbContext(typeof(HayraKosanlarMigrationsDbContext))]
-    partial class HayraKosanlarMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201009084059_Added_HelpRequest")]
+    partial class Added_HelpRequest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
