@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using HayraKosanlar.Book;
+using HayraKosanlar.HelpRequest;
 
 namespace HayraKosanlar
 {
@@ -9,6 +11,9 @@ namespace HayraKosanlar
             /* You can configure your AutoMapper mapping configuration here.
              * Alternatively, you can split your mapping configurations
              * into multiple profile classes for a better organization. */
+
+            CreateMap<HelpRequest.HelpRequest, HelpRequestDto>();
+            CreateMap<CreateUpdateHelpRequestDto, HelpRequest.HelpRequest>();
         }
     }
 }
