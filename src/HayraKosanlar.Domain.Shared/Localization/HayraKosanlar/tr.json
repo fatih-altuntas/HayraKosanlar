@@ -3,6 +3,23 @@
   "texts": {
     "Menu:Home": "Ana sayfa",
     "Welcome": "Hoşgeldiniz",
-    "LongWelcomeMessage": "Uygulamaya hoşgeldiniz. Bu, ABP framework'ü üzerine bina edilmiş bir başlangıç projesidir. Daha fazla bilgi için abp.io adresini ziyaret edebilirsiniz."
+    "LongWelcomeMessage": "Uygulamaya hoşgeldiniz. Bu, ABP framework'ü üzerine bina edilmiş bir başlangıç projesidir. Daha fazla bilgi için abp.io adresini ziyaret edebilirsiniz.",
+    "Menu:HelpRequests": "Yardım Talepleri",
+    "HelpRequests": "Yardım Talepleri",
+    "Name": "Ad",
+    "Surname": "Soyad",
+    "IdentityNumber": "TC Kimlik No",
+    "PhoneNumber": "Telefon",
+    "ExtraInformation": "Ek Bilgiler",
+    "Status": "Durum",
+    "Enum:HelpRequestStatus:0": "Bulunamadı",
+    "Enum:HelpRequestStatus:1": "Yeni Kayıt",
+    "Enum:HelpRequestStatus:2": "Tespit Bekleniyor",
+    "Enum:HelpRequestStatus:3": "Tespit Edildi",
+    "Enum:HelpRequestStatus:4": "Reddedildi",
+    "Enum:HelpRequestStatus:5": "Dağıtım Bekliyor",
+    "Enum:HelpRequestStatus:6": "Dağıtıldı",
+    "Enum:HelpRequestStatus:7": "Sonuçlandı",
+    "CreationTime" :  "Oluşturma Tarihi"
   }
 }

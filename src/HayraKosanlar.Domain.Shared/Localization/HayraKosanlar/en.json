@@ -3,6 +3,23 @@
   "texts": {
     "Menu:Home": "Home",
     "Welcome": "Welcome",
-    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
+    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io.",
+    "Menu:HelpRequests": "Help Requests",
+    "HelpRequests": "Help Requests",
+    "Name": "Name",
+    "Surname": "Surname",
+    "IdentityNumber": "Identity Number",
+    "PhoneNumber": "PhoneNumber",
+    "ExtraInformation": "Extra Information",
+    "Status": "Status",
+    "Enum:HelpRequestStatus:0": "Not Found",
+    "Enum:HelpRequestStatus:1": "New Request",
+    "Enum:HelpRequestStatus:2": "Waiting For Detection",
+    "Enum:HelpRequestStatus:3": "Detection Done",
+    "Enum:HelpRequestStatus:4": "Rejected",
+    "Enum:HelpRequestStatus:5": "Delivery Waiting",
+    "Enum:HelpRequestStatus:6": "Delivery Done",
+    "Enum:HelpRequestStatus:7": "Request Done",
+    "CreationTime": "Creation Time"
   }
 }
