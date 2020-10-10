@@ -1,6 +1,7 @@
 ﻿$(function () {
     var l = abp.localization.getResource('HayraKosanlar');
-
+    var createModal = new abp.ModalManager(abp.appPath + 'HelpRequest/CreateModal');
+    
     var dataTable = $('#HelpRequestsTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
             serverSide: true,
@@ -65,4 +66,14 @@
             ]
         })
     );
+
+    $('#NewHelpRequestButton').click(function (e) {
+        e.preventDefault();
+        createModal.open();
+    })
+
+    createModal.onResult(function () {
+        dataTable.ajax.reload();
+    })
+    
 });

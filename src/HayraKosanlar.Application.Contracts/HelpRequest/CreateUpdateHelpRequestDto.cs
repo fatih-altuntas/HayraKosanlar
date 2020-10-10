@@ -1,8 +1,4 @@
-﻿using HayraKosanlar.HelpRequest;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace HayraKosanlar.HelpRequest
 {
@@ -13,6 +9,7 @@ namespace HayraKosanlar.HelpRequest
         [Required]
         public string Surname { get; set; }
         [Required]
+        [Range(10000000000,99999999999,ErrorMessage = "Please enter your 11-digit ID number")]
         public string IdentityNumber { get; set; }
         [Required]
         public long TownId { get; set; }
@@ -22,6 +19,8 @@ namespace HayraKosanlar.HelpRequest
         public string MotherName { get; set; }
         [Required]
         public string FatherName { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         [Required]
         public string PhoneNumber { get; set; }
         [Required]
