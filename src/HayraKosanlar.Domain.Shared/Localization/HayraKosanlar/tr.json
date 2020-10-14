@@ -42,6 +42,7 @@
     "RequestDone": "Sonuçlandı",
     "NewHelpRequest": "Yeni Yardım Talebi",
     "Not a valid phone number": "Lütfen telefon numarası formatında giriniz.(5*********)",
-    "Please enter your 11-digit ID number": "Lütfen 11 haneli kimlik numaranızı giriniz."
+    "Please enter your 11-digit ID number": "Lütfen 11 haneli kimlik numaranızı giriniz.",
+    "UpdateHelpRequest": "Yardım Talebini Güncelle"
   }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HayraKosanlar.HelpRequest;
 
 namespace HayraKosanlar.Web
 {
@@ -6,6 +7,7 @@ namespace HayraKosanlar.Web
     {
         public HayraKosanlarWebAutoMapperProfile()
         {
+            CreateMap<HelpRequestDto,CreateUpdateHelpRequestDto>();
             //Define your AutoMapper configuration here for the Web project.
         }
     }

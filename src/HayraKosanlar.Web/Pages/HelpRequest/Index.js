@@ -1,7 +1,8 @@
 ﻿$(function () {
     var l = abp.localization.getResource('HayraKosanlar');
     var createModal = new abp.ModalManager(abp.appPath + 'HelpRequest/CreateModal');
-    
+    var editModal = new abp.ModalManager(abp.appPath + 'HelpRequest/EditModal');
+
     var dataTable = $('#HelpRequestsTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
             serverSide: true,
@@ -62,7 +63,21 @@
                                 locale: abp.localization.currentCulture.name
                             }).toLocaleString(luxon.DateTime.DATETIME_SHORT);
                     }
-                }
+                },
+                {
+                    title: l('Actions'),
+                    rowAction: {
+                        items:
+                            [
+                                {
+                                    text: l('Edit'),
+                                    action: function (data) {
+                                        editModal.open({ id: data.record.id });
+                                    }
+                                }
+                            ]
+                    }
+                },
             ]
         })
     );
@@ -71,7 +86,9 @@
         e.preventDefault();
         createModal.open();
     })
-
+    editModal.onResult(function () {
+        dataTable.ajax.reload();
+    });
     createModal.onResult(function () {
         dataTable.ajax.reload();
     })
