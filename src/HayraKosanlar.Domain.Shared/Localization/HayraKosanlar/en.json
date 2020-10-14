@@ -43,6 +43,10 @@
     "NewHelpRequest": "New Help Request",
     "Not a valid phone number": "Not a valid phone number.(5*********)",
     "Please enter your 11-digit ID number": "Please enter your 11-digit ID number.",
-    "UpdateHelpRequest" : "Update Help Request"
+    "UpdateHelpRequest": "Update Help Request",
+    "Permission:HelpRequest": "Help request management",
+    "Permission:List": "List",
+    "Permission:HelpRequest.Create": "Create",
+    "Permission:HelpRequest.Edit": "Edit"
   }
 }

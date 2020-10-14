@@ -71,6 +71,7 @@
                             [
                                 {
                                     text: l('Edit'),
+                                    visible: abp.auth.isGranted('HayraKosanlar.Edit'),
                                     action: function (data) {
                                         editModal.open({ id: data.record.id });
                                     }

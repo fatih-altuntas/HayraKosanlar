@@ -5,6 +5,7 @@ using HayraKosanlar.Localization;
 using HayraKosanlar.MultiTenancy;
 using Volo.Abp.TenantManagement.Web.Navigation;
 using Volo.Abp.UI.Navigation;
+using HayraKosanlar.Permissions;
 
 namespace HayraKosanlar.Web.Menus
 {
@@ -29,7 +30,9 @@ namespace HayraKosanlar.Web.Menus
             var l = context.GetLocalizer<HayraKosanlarResource>();
 
             context.Menu.Items.Insert(0, new ApplicationMenuItem(HayraKosanlarMenus.Home, l["Menu:Home"], "~/"));
-            context.Menu.AddItem(
+            if (await context.IsGrantedAsync(HayraKosanlarPermissions.HelpRequest.List))
+            {
+                context.Menu.AddItem(
                 new ApplicationMenuItem(
                 "HelpRequests",
                 l["Menu:HelpRequests"],
@@ -37,6 +40,7 @@ namespace HayraKosanlar.Web.Menus
                 url: "/HelpRequest"
             )
         );
+            }
         }
     }
 }

@@ -36,6 +36,8 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using HayraKosanlar.Permissions;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HayraKosanlar.Web
 {
@@ -72,6 +74,13 @@ namespace HayraKosanlar.Web
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
+
+            //Configure<RazorPagesOptions>(options =>
+            //{
+            //    options.Conventions.AuthorizePage("/HelpRequest/Index", HayraKosanlarPermissions.HelpRequest.List);
+            //    options.Conventions.AuthorizePage("/HelpRequest/CreateModal", HayraKosanlarPermissions.HelpRequest.Create);
+            //    options.Conventions.AuthorizePage("/HelpRequest/EditModal", HayraKosanlarPermissions.HelpRequest.Edit);
+            //});
 
             ConfigureUrls(configuration);
             ConfigureAuthentication(context, configuration);

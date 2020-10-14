@@ -1,6 +1,7 @@
 ﻿using HayraKosanlar.HelpRequest;
 using System;
 using System.Threading.Tasks;
+using HayraKosanlar.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -18,7 +19,10 @@ namespace HayraKosanlar.HelpRequest
     {
         public HelpRequestAppService(IRepository<HelpRequest,Guid> repository) : base(repository)
         {
-            
+            GetPolicyName = HayraKosanlarPermissions.HelpRequest.List;
+            GetListPolicyName = HayraKosanlarPermissions.HelpRequest.List;
+            CreatePolicyName = HayraKosanlarPermissions.HelpRequest.Create;
+            UpdatePolicyName = HayraKosanlarPermissions.HelpRequest.Edit;
         }
     }
 }

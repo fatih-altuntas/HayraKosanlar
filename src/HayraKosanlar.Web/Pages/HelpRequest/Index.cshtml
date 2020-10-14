@@ -2,8 +2,11 @@
 @using HayraKosanlar.Localization
 @using HayraKosanlar.Web.Pages.HelpRequest
 @using Microsoft.Extensions.Localization
+@using Microsoft.AspNetCore.Authorization
+@using HayraKosanlar.Permissions
 @model HayraKosanlar.Web.Pages.HelpRequest.IndexModel
 @inject IStringLocalizer<HayraKosanlarResource> L
+@inject IAuthorizationService AuthorizationService
 @section scripts{
     <abp-script src="/Pages/HelpRequest/Index.js" />
 }
@@ -14,7 +17,10 @@
                 <abp-card-title>@L["HelpRequests"]</abp-card-title>
             </abp-column>
             <abp-column size-md="_6" class="text-right">
-                <abp-button id="NewHelpRequestButton" text="@L["NewHelpRequest"].Value" icon="plus" button-type="Primary" />
+                @if (await AuthorizationService.IsGrantedAsync(HayraKosanlarPermissions.HelpRequest.Create))
+                {
+                    <abp-button id="NewHelpRequestButton" text="@L["NewHelpRequest"].Value" icon="plus" button-type="Primary" />
+                }
             </abp-column>
         </abp-row>
     </abp-card-header>
