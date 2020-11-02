@@ -5,16 +5,18 @@
 
     var dataTable = $('#HelpRequestsTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
-            serverSide: true,
+            orderCellsTop: true,
+            fixedHeader: true,
             paging: true,
             order: [[1, "asc"]],
-            searching: false,
+            searching: true,
             scrollX: true,
             ajax: abp.libs.datatables.createAjax(hayraKosanlar.helpRequest.helpRequest.getList),
             columnDefs: [
                 {
                     title: l('Name'),
-                    data: "name"
+                    data: "name",
+                    searchable: "true"
                 },
                 {
                     title: l('Surname'),
@@ -39,21 +41,6 @@
                         return l('Enum:HelpRequestStatus:' + data);
                     }
                 },
-                //{
-                //    title: l('PublishDate'),
-                //    data: "publishDate",
-                //    render: function (data) {
-                //        return luxon
-                //            .DateTime
-                //            .fromISO(data, {
-                //                locale: abp.localization.currentCulture.name
-                //            }).toLocaleString();
-                //    }
-                //},
-                //{
-                //    title: l('Price'),
-                //    data: "price"
-                //},
                 {
                     title: l('CreationTime'), data: "creationTime",
                     render: function (data) {
@@ -82,7 +69,6 @@
             ]
         })
     );
-
     $('#NewHelpRequestButton').click(function (e) {
         e.preventDefault();
         createModal.open();
