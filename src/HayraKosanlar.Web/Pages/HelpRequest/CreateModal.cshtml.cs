@@ -1,6 +1,5 @@
-using HayraKosanlar.HelpRequest;
+using HayraKosanlar.HelpRequests;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
 
 namespace HayraKosanlar.Web.Pages.HelpRequest

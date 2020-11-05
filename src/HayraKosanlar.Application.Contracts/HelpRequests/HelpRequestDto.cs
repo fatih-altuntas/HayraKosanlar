@@ -1,9 +1,10 @@
-﻿using System;
-using Volo.Abp.Domain.Entities.Auditing;
+﻿using HayraKosanlar.HelpRequest;
+using System;
+using Volo.Abp.Application.Dtos;
 
-namespace HayraKosanlar.HelpRequest
+namespace HayraKosanlar.HelpRequests
 {
-    public class HelpRequest : AuditedAggregateRoot<Guid>
+    public class HelpRequestDto : AuditedEntityDto<Guid>
     {
         public string Name { get; set; }
         public string Surname { get; set; }

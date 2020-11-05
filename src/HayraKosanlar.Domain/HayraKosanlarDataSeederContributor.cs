@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using HayraKosanlar.GiveAHandRequests;
+using System;
 using System.Threading.Tasks;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
@@ -10,18 +9,23 @@ namespace HayraKosanlar
 {
     public class HayraKosanlarDataSeederContributor : IDataSeedContributor, ITransientDependency
     {
-        private readonly IRepository<HelpRequest.HelpRequest, Guid> _helpRequestRepository;
+        private readonly IRepository<HelpRequests.HelpRequest, Guid> _helpRequestRepository;
+        private readonly IRepository<GiveAHandRequest, Guid> _giveAHandRequestRepository;
 
-        public HayraKosanlarDataSeederContributor(IRepository<HelpRequest.HelpRequest, Guid> helpRequestsRepository)
+        public HayraKosanlarDataSeederContributor(
+            IRepository<HelpRequests.HelpRequest, Guid> helpRequestsRepository,
+            IRepository<GiveAHandRequest, Guid> giveAHandRequestRepository
+            )
         {
             _helpRequestRepository = helpRequestsRepository;
+            _giveAHandRequestRepository = giveAHandRequestRepository;
         }
 
         public async Task SeedAsync(DataSeedContext context)
         {
             if (await _helpRequestRepository.GetCountAsync() <= 0)
             {
-                await _helpRequestRepository.InsertAsync(new HelpRequest.HelpRequest
+                await _helpRequestRepository.InsertAsync(new HelpRequests.HelpRequest
                 {
                     Birthplace = "Bakırköy",
                     ChildrenCount = 0,
@@ -39,7 +43,7 @@ namespace HayraKosanlar
                     TownId = 18,
                     ExtraInformation = "Okul için 200 tl harçlık yollarmısınız"
                 });
-                await _helpRequestRepository.InsertAsync(new HelpRequest.HelpRequest
+                await _helpRequestRepository.InsertAsync(new HelpRequests.HelpRequest
                 {
                     Birthplace = "Kadıköy",
                     ChildrenCount = 0,
@@ -56,6 +60,16 @@ namespace HayraKosanlar
                     Surname = "Aydın",
                     TownId = 18,
                     ExtraInformation = "Temel gıda ihtiyacımı karşılarmısınız"
+                });
+            }
+
+            if (await _giveAHandRequestRepository.GetCountAsync() <= 0)
+            {
+                await _giveAHandRequestRepository.InsertAsync(new GiveAHandRequest
+                {
+                    Name = "Yardım",
+                    Surname = "Sever",
+                    PhoneNumber = "5356661122"
                 });
             }
         }

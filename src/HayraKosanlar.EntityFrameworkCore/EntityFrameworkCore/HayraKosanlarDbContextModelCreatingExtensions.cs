@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HayraKosanlar.GiveAHandRequests;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 
@@ -12,11 +13,18 @@ namespace HayraKosanlar.EntityFrameworkCore
 
             /* Configure your own tables/entities inside here */
 
-            builder.Entity<HelpRequest.HelpRequest>(b =>
+            builder.Entity<HelpRequests.HelpRequest>(b =>
             {
                 b.ToTable("HelpRequest", HayraKosanlarConsts.DbSchema);
                 b.ConfigureByConvention(); //auto configure for the base class props
                 b.Property(x=> x.Name).IsRequired().HasMaxLength(128);
+            });
+
+            builder.Entity<GiveAHandRequest>(b =>
+            {
+                b.ToTable("GiveAHandRequest", HayraKosanlarConsts.DbSchema);
+                b.ConfigureByConvention(); //auto configure for the base class props
+                b.Property(x => x.Name).IsRequired().HasMaxLength(128);
             });
             //builder.Entity<HelpRequest.HelpRequest>(b =>
             //{

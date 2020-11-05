@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using HayraKosanlar.HelpRequest;
+using System.ComponentModel.DataAnnotations;
 
-namespace HayraKosanlar.HelpRequest
+namespace HayraKosanlar.HelpRequests
 {
     public class CreateUpdateHelpRequestDto
     {
@@ -30,11 +31,9 @@ namespace HayraKosanlar.HelpRequest
         [Required]
         public MaritalStatus MaritalStatus { get; set; }
         public string PartnerName { get; set; }
-
         [Required]
         public long ChildrenCount { get; set; }
         public string ExtraInformation { get; set; }
-
         [Required]
         public HelpRequestStatus Status { get; set; } = HelpRequestStatus.NewRequest;
     }

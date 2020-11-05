@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using HayraKosanlar.HelpRequest;
+using HayraKosanlar.GiveAHandRequests;
+using HayraKosanlar.HelpRequests;
 
 namespace HayraKosanlar
 {
@@ -11,8 +12,10 @@ namespace HayraKosanlar
              * Alternatively, you can split your mapping configurations
              * into multiple profile classes for a better organization. */
 
-            CreateMap<HelpRequest.HelpRequest, HelpRequestDto>();
-            CreateMap<CreateUpdateHelpRequestDto, HelpRequest.HelpRequest>();
+            CreateMap<HelpRequests.HelpRequest, HelpRequestDto>();
+            CreateMap<CreateUpdateHelpRequestDto, HelpRequests.HelpRequest>();
+            CreateMap<GiveAHandRequest, GiveAHandRequestDto>();
+            CreateMap<CreateUpdateGiveAHandRequestDto, GiveAHandRequest>();
         }
     }
 }

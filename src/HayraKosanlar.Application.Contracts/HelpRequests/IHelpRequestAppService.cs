@@ -2,7 +2,7 @@
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
-namespace HayraKosanlar.HelpRequest
+namespace HayraKosanlar.HelpRequests
 {
     public interface IHelpRequestAppService : 
         ICrudAppService< //Defines CRUD methods

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using HayraKosanlar.HelpRequest;
+using HayraKosanlar.HelpRequests;
 
 namespace HayraKosanlar.Web
 {

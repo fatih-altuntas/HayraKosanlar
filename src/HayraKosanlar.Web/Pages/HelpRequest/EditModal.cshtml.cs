@@ -1,4 +1,4 @@
-using HayraKosanlar.HelpRequest;
+using HayraKosanlar.HelpRequests;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

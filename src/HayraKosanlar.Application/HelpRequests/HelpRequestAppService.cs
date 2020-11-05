@@ -1,12 +1,10 @@
-﻿using HayraKosanlar.HelpRequest;
-using System;
-using System.Threading.Tasks;
+﻿using System;
 using HayraKosanlar.Permissions;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 
-namespace HayraKosanlar.HelpRequest
+namespace HayraKosanlar.HelpRequests
 {
     public class HelpRequestAppService :
         CrudAppService< //Defines CRUD methods
