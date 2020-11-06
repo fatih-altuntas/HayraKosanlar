@@ -41,6 +41,12 @@ namespace HayraKosanlar.Web.Menus
             )
         );
             }
+            context.Menu.AddItem(
+                new ApplicationMenuItem(
+                "GiveAHandRequest",
+                l["Menu:GiveAHandRequest"],
+                icon: "fa fa-book",
+                url: "/GiveAHandRequest"));
         }
     }
 }

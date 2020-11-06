@@ -6,7 +6,7 @@ using Volo.Abp.Application.Services;
 
 namespace HayraKosanlar.GiveAHandRequests
 {
-    public interface IGiveAHandAppService :
+    public interface IGiveAHandRequestAppService :
         ICrudAppService<
             GiveAHandRequestDto,
             Guid,

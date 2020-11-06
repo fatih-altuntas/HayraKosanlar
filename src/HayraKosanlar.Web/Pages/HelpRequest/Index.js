@@ -1,4 +1,7 @@
 ﻿$(function () {
+    $('#HelpRequest_Status').css('pointer-events', 'none');
+    $('#HelpRequest_Status').parent().css('cursor', 'no-drop');
+
     var l = abp.localization.getResource('HayraKosanlar');
     var createModal = new abp.ModalManager(abp.appPath + 'HelpRequest/CreateModal');
     var editModal = new abp.ModalManager(abp.appPath + 'HelpRequest/EditModal');
@@ -11,7 +14,7 @@
             order: [[1, "asc"]],
             searching: true,
             scrollX: true,
-            ajax: abp.libs.datatables.createAjax(hayraKosanlar.helpRequest.helpRequest.getList),
+            ajax: abp.libs.datatables.createAjax(hayraKosanlar.helpRequests.helpRequest.getList),
             columnDefs: [
                 {
                     title: l('Name'),

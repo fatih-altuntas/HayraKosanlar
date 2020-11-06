@@ -1,0 +1,28 @@
+﻿@page
+@using HayraKosanlar.Localization;
+@using HayraKosanlar.Web.Pages.GiveAHandRequest
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<HayraKosanlarResource> L
+@model HayraKosanlar.Web.Pages.GiveAHandRequest.IndexModel
+@section scripts
+{
+    <abp-script src="/Pages/GiveAHandRequest/Index.js" />
+}
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["GiveAHandRequest"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+                <abp-button id="NewGiveAHandRequestButton"
+                            text="@L["NewGiveAHandRequest"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="GiveAHandRequestsTable"></abp-table>
+    </abp-card-body>
+</abp-card>

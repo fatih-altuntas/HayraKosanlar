@@ -4,7 +4,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace HayraKosanlar.GiveAHandRequests
 {
-    public class CreateUpdateGiveAHandRequestDto: AuditedEntityDto<Guid>
+    public class CreateUpdateGiveAHandRequestDto
     {
         [Required]
         public string Name { get; set; }

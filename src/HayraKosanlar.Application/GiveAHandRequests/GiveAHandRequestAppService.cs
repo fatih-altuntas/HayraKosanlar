@@ -14,7 +14,7 @@ namespace HayraKosanlar.GiveAHandRequests
            Guid, //Primary key of the book entity
            PagedAndSortedResultRequestDto, //Used for paging/sorting
            CreateUpdateGiveAHandRequestDto>, //Used to create/update a book
-       IGiveAHandAppService //implement the IBookAppService
+       IGiveAHandRequestAppService //implement the IBookAppService
     {
         public GiveAHandRequestAppService(IRepository<GiveAHandRequest, Guid> repository)
             : base(repository)
