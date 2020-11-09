@@ -5,6 +5,7 @@
     var l = abp.localization.getResource('HayraKosanlar');
     var createModal = new abp.ModalManager(abp.appPath + 'HelpRequest/CreateModal');
     var editModal = new abp.ModalManager(abp.appPath + 'HelpRequest/EditModal');
+    var status = 1;
 
     var dataTable = $('#HelpRequestsTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
@@ -14,7 +15,9 @@
             order: [[1, "asc"]],
             searching: true,
             scrollX: true,
-            ajax: abp.libs.datatables.createAjax(hayraKosanlar.helpRequests.helpRequest.getList),
+            ajax: abp.libs.datatables.createAjax(hayraKosanlar.helpRequests.helpRequest.listByStatus, function () {
+                return status;
+            }),
             columnDefs: [
                 {
                     title: l('Name'),
@@ -82,5 +85,11 @@
     createModal.onResult(function () {
         dataTable.ajax.reload();
     })
+
+    $('select').on('change', function () {
+        debugger;
+        status = this.value;
+        dataTable.ajax.reload();
+    });
     
 });

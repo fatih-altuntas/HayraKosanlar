@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
@@ -11,6 +12,6 @@ namespace HayraKosanlar.HelpRequests
             PagedAndSortedResultRequestDto, //Used for paging/sorting
             CreateUpdateHelpRequestDto> // Used to create/update a book
     {
-
+        Task<PagedResultDto<HelpRequestDto>> ListByStatus(long status = 1);
     }
 }
