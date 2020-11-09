@@ -1,6 +1,7 @@
 ﻿$(function () {
     var l = abp.localization.getResource('HayraKosanlar');
     var createModal = new abp.ModalManager(abp.appPath + 'GiveAHandRequest/CreateModal');
+    var editModal = new abp.ModalManager(abp.appPath + 'GiveAHandRequest/EditModal');
     var dataTable = $('#GiveAHandRequestsTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
             orderCellsTop: true,
@@ -37,6 +38,21 @@
                                 locale: abp.localization.currentCulture.name
                             }).toLocaleString(luxon.DateTime.DATETIME_SHORT);
                     }
+                },
+                {
+                    title: l('Actions'),
+                    rowAction: {
+                        items:
+                            [
+                                {
+                                    text: l('Edit'),
+                                    visible: abp.auth.isGranted('HayraKosanlar.EditGiveAHandRequest'),
+                                    action: function (data) {
+                                        editModal.open({ id: data.record.id });
+                                    }
+                                }
+                            ]
+                    }
                 }
             ]
         })
@@ -44,7 +60,9 @@
     createModal.onResult(function () {
         dataTable.ajax.reload();
     });
-
+    editModal.onResult(function () {
+        dataTable.ajax.reload();
+    });
     $('#NewGiveAHandRequestButton').click(function (e) {
         e.preventDefault();
         createModal.open();

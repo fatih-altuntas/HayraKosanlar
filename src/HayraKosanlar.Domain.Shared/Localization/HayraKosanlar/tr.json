@@ -5,6 +5,7 @@
     "Welcome": "Hoşgeldiniz",
     "LongWelcomeMessage": "Uygulamaya hoşgeldiniz. Bu, ABP framework'ü üzerine bina edilmiş bir başlangıç projesidir. Daha fazla bilgi için abp.io adresini ziyaret edebilirsiniz.",
     "Menu:HelpRequests": "Yardım Talepleri",
+    "Menu:GiveAHandRequest": "Yardım Eli Uzatma Talepleri",
     "HelpRequests": "Yardım Talepleri",
     "Name": "Ad",
     "Surname": "Soyad",
@@ -41,12 +42,18 @@
     "DeliveryDone": "Dağıtıldı",
     "RequestDone": "Sonuçlandı",
     "NewHelpRequest": "Yeni Yardım Talebi",
+    "NewGiveAHandRequest": "Yeni Yardım Eli Uzatma Talebi",
     "Not a valid phone number": "Lütfen telefon numarası formatında giriniz.(5*********)",
     "Please enter your 11-digit ID number": "Lütfen 11 haneli kimlik numaranızı giriniz.",
     "UpdateHelpRequest": "Yardım Talebini Güncelle",
+    "UpdateGiveAHandRequest": "Yardım Eli Uzatma Talebini Güncelle",
     "Permission:HelpRequest": "Yardım talebi yönetimi",
-    "Permission:List": "Listeleme",
+    "Permission:HelpRequest.List": "Listeleme",
     "Permission:HelpRequest.Create": "Ekleme",
-    "Permission:HelpRequest.Edit": "Düzenleme"
+    "Permission:HelpRequest.Edit": "Düzenleme",
+    "Permission:GiveAHandRequest": "Yardım eli uzatma talebi yönetimi",
+    "Permission:GiveAHandRequest.List": "Listeleme",
+    "Permission:GiveAHandRequest.Create": "Ekleme",
+    "Permission:GiveAHandRequest.Edit": "Düzenleme"
   }
 }

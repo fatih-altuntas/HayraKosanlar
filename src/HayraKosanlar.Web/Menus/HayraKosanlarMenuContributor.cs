@@ -38,15 +38,17 @@ namespace HayraKosanlar.Web.Menus
                 l["Menu:HelpRequests"],
                 icon: "fa fa-book",
                 url: "/HelpRequest"
-            )
-        );
+                ));
             }
-            context.Menu.AddItem(
+            if (await context.IsGrantedAsync(HayraKosanlarPermissions.GiveAHelpRequest.List))
+            {
+                context.Menu.AddItem(
                 new ApplicationMenuItem(
                 "GiveAHandRequest",
                 l["Menu:GiveAHandRequest"],
                 icon: "fa fa-book",
                 url: "/GiveAHandRequest"));
+            }
         }
     }
 }

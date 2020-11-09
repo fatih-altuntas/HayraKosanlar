@@ -3,14 +3,17 @@
     public static class HayraKosanlarPermissions
     {
         public const string GroupName = "HayraKosanlar";
-
         public static class HelpRequest
         {
             public const string List = GroupName + ".List";
             public const string Create = GroupName + ".Create";
             public const string Edit = GroupName + ".Edit";
         }
-        //Add your own permission names. Example:
-        //public const string MyPermission1 = GroupName + ".MyPermission1";
+        public static class GiveAHelpRequest
+        {
+            public const string List = GroupName + ".ListGiveAHandRequest";
+            public const string Create = GroupName + ".CreateGiveAHandRequest";
+            public const string Edit = GroupName + ".EditGiveAHandRequest";
+        }
     }
 }

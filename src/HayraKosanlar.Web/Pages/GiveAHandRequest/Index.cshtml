@@ -1,8 +1,10 @@
 ﻿@page
 @using HayraKosanlar.Localization;
-@using HayraKosanlar.Web.Pages.GiveAHandRequest
 @using Microsoft.Extensions.Localization
+@using HayraKosanlar.Permissions
+@using Microsoft.AspNetCore.Authorization
 @inject IStringLocalizer<HayraKosanlarResource> L
+@inject IAuthorizationService AuthorizationService
 @model HayraKosanlar.Web.Pages.GiveAHandRequest.IndexModel
 @section scripts
 {
@@ -15,10 +17,13 @@
                 <abp-card-title>@L["GiveAHandRequest"]</abp-card-title>
             </abp-column>
             <abp-column size-md="_6" class="text-right">
-                <abp-button id="NewGiveAHandRequestButton"
-                            text="@L["NewGiveAHandRequest"].Value"
-                            icon="plus"
-                            button-type="Primary" />
+                @if (await AuthorizationService.IsGrantedAsync(HayraKosanlarPermissions.GiveAHelpRequest.Create))
+                {
+                    <abp-button id="NewGiveAHandRequestButton"
+                                text="@L["NewGiveAHandRequest"].Value"
+                                icon="plus"
+                                button-type="Primary" />
+                }
             </abp-column>
         </abp-row>
     </abp-card-header>

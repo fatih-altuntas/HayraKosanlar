@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HayraKosanlar.Permissions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Volo.Abp.Application.Dtos;
@@ -19,7 +20,10 @@ namespace HayraKosanlar.GiveAHandRequests
         public GiveAHandRequestAppService(IRepository<GiveAHandRequest, Guid> repository)
             : base(repository)
         {
-
+            GetPolicyName = HayraKosanlarPermissions.GiveAHelpRequest.List;
+            GetListPolicyName = HayraKosanlarPermissions.GiveAHelpRequest.List;
+            CreatePolicyName = HayraKosanlarPermissions.GiveAHelpRequest.Create;
+            UpdatePolicyName = HayraKosanlarPermissions.GiveAHelpRequest.Edit;
         }
     }
 }

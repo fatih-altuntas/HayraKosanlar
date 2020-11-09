@@ -16,6 +16,8 @@ namespace HayraKosanlar
             CreateMap<CreateUpdateHelpRequestDto, HelpRequests.HelpRequest>();
             CreateMap<GiveAHandRequest, GiveAHandRequestDto>();
             CreateMap<CreateUpdateGiveAHandRequestDto, GiveAHandRequest>();
+            CreateMap<HelpRequestDto, CreateUpdateHelpRequestDto>();
+            CreateMap<GiveAHandRequestDto, CreateUpdateGiveAHandRequestDto>();
         }
     }
 }

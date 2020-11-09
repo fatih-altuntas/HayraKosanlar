@@ -5,6 +5,7 @@
     "Welcome": "Welcome",
     "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io.",
     "Menu:HelpRequests": "Help Requests",
+    "Menu:GiveAHandRequest": "Give a Hand Requests",
     "HelpRequests": "Help Requests",
     "Name": "Name",
     "Surname": "Surname",
@@ -41,12 +42,18 @@
     "DeliveryDone": "Delivery Done",
     "RequestDone": "Request Done",
     "NewHelpRequest": "New Help Request",
+    "NewGiveAHandRequest": "New Give a Hand Request",
     "Not a valid phone number": "Not a valid phone number.(5*********)",
     "Please enter your 11-digit ID number": "Please enter your 11-digit ID number.",
     "UpdateHelpRequest": "Update Help Request",
+    "UpdateGiveAHandRequest": "Update Give a Hand Request",
     "Permission:HelpRequest": "Help request management",
-    "Permission:List": "List",
+    "Permission:HelpRequest.List": "List",
     "Permission:HelpRequest.Create": "Create",
-    "Permission:HelpRequest.Edit": "Edit"
+    "Permission:HelpRequest.Edit": "Edit",
+    "Permission:GiveAHandRequest": "Give a hand request management",
+    "Permission:GiveAHandRequest.List": "List",
+    "Permission:GiveAHandRequest.Create": "Create",
+    "Permission:GiveAHandRequest.Edit": "Edit"
   }
 }

@@ -8,15 +8,15 @@ namespace HayraKosanlar.Permissions
     {
         public override void Define(IPermissionDefinitionContext context)
         {
-            var bookStoreGroup = context.AddGroup(HayraKosanlarPermissions.GroupName, L("Permission:HelpRequest"));
+            var hayraKosanlarPermissionGroup = context.AddGroup(HayraKosanlarPermissions.GroupName, L("Permission:HelpRequest"));
 
-            var booksPermission = bookStoreGroup.AddPermission(HayraKosanlarPermissions.HelpRequest.List, L("Permission:List"));
-            booksPermission.AddChild(HayraKosanlarPermissions.HelpRequest.Create, L("Permission:HelpRequest.Create"));
-            booksPermission.AddChild(HayraKosanlarPermissions.HelpRequest.Edit, L("Permission:HelpRequest.Edit"));
+            var helpRequestsPermission = hayraKosanlarPermissionGroup.AddPermission(HayraKosanlarPermissions.HelpRequest.List, L("Permission:HelpRequest.List"));
+            helpRequestsPermission.AddChild(HayraKosanlarPermissions.HelpRequest.Create, L("Permission:HelpRequest.Create"));
+            helpRequestsPermission.AddChild(HayraKosanlarPermissions.HelpRequest.Edit, L("Permission:HelpRequest.Edit"));
 
-
-            //Define your own permissions here. Example:
-            //myGroup.AddPermission(HayraKosanlarPermissions.MyPermission1, L("Permission:MyPermission1"));
+            var giveAHandRequestsPermission = hayraKosanlarPermissionGroup.AddPermission(HayraKosanlarPermissions.GiveAHelpRequest.List, L("Permission:GiveAHelpRequest:List"));
+            giveAHandRequestsPermission.AddChild(HayraKosanlarPermissions.GiveAHelpRequest.Create, L("Permission:GiveAHelpRequest.Create"));
+            giveAHandRequestsPermission.AddChild(HayraKosanlarPermissions.GiveAHelpRequest.Edit, L("Permission:GiveAHelpRequest.Edit"));
         }
 
         private static LocalizableString L(string name)
