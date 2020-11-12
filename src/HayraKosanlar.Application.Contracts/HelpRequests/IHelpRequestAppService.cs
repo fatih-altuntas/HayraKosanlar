@@ -13,5 +13,6 @@ namespace HayraKosanlar.HelpRequests
             CreateUpdateHelpRequestDto> // Used to create/update a book
     {
         Task<PagedResultDto<HelpRequestDto>> ListByStatus(long status = 1);
+        Task<ListResultDto<DistributorLookupDto>> GetDistributorLookupAsync();
     }
 }

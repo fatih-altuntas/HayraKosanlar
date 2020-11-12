@@ -1,5 +1,8 @@
 ﻿using HayraKosanlar.HelpRequest;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Volo.Abp.Users;
 
 namespace HayraKosanlar.HelpRequests
 {
@@ -36,5 +39,8 @@ namespace HayraKosanlar.HelpRequests
         public string ExtraInformation { get; set; }
         [Required]
         public HelpRequestStatus Status { get; set; } = HelpRequestStatus.NewRequest;
+        public Guid DistributorId { get; set; }
+        public Guid SpotterId { get; set; }
+        
     }
 }

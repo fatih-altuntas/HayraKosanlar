@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HayraKosanlar.HelpRequest;
 using HayraKosanlar.Permissions;
+using HayraKosanlar.Users;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -22,13 +24,15 @@ namespace HayraKosanlar.HelpRequests
         IHelpRequestAppService
     {
         private readonly ICurrentUser _currentUser;
-        public HelpRequestAppService(IRepository<HelpRequest,Guid> repository, ICurrentUser currentUser) : base(repository)
+        private readonly IRepository<AppUser, Guid> _repositoryUser;
+        public HelpRequestAppService(IRepository<HelpRequest,Guid> repository, ICurrentUser currentUser, IRepository<AppUser, Guid> repositoryUser) : base(repository)
         {
             GetPolicyName = HayraKosanlarPermissions.HelpRequest.List;
             GetListPolicyName = HayraKosanlarPermissions.HelpRequest.List;
             CreatePolicyName = HayraKosanlarPermissions.HelpRequest.Create;
             UpdatePolicyName = HayraKosanlarPermissions.HelpRequest.Edit;
             _currentUser = currentUser;
+            _repositoryUser = repositoryUser;
         }
 
         public async Task<PagedResultDto<HelpRequestDto>> ListByStatus(long status=1)
@@ -37,6 +41,13 @@ namespace HayraKosanlar.HelpRequests
             HelpRequestList.Items =  HelpRequestList.Items.Where(x => x.Status == (HelpRequestStatus)status).ToList();
             HelpRequestList.TotalCount = HelpRequestList.Items.Count;
             return HelpRequestList;
+        }
+        public async Task<ListResultDto<DistributorLookupDto>> GetDistributorLookupAsync()
+        {
+            var distributors = await _repositoryUser.GetListAsync();
+            return new ListResultDto<DistributorLookupDto>(
+                ObjectMapper.Map<List<AppUser>, List<DistributorLookupDto>>(distributors)
+            );
         }
     }
 }

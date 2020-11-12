@@ -1,5 +1,7 @@
 ﻿using HayraKosanlar.HelpRequest;
+using HayraKosanlar.Users;
 using System;
+using System.Collections.Generic;
 using Volo.Abp.Domain.Entities.Auditing;
 
 namespace HayraKosanlar.HelpRequests
@@ -21,5 +23,7 @@ namespace HayraKosanlar.HelpRequests
         public long ChildrenCount { get; set; }
         public string ExtraInformation { get; set; }
         public HelpRequestStatus Status { get; set; }
+        public Guid DistributorId { get; set; }
+        public Guid SpotterId { get; set; }
     }
 }

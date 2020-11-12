@@ -21,5 +21,9 @@ namespace HayraKosanlar.HelpRequests
         public long ChildrenCount { get; set; }
         public string ExtraInformation { get; set; }
         public HelpRequestStatus Status { get; set; }
+        public Guid DistributorId { get; set; }
+        public string DistributorName { get; set; }
+        public Guid SpotterId { get; set; }
+        public string SpotterName { get; set; }
     }
 }
