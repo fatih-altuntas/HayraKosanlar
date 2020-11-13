@@ -8,6 +8,9 @@ namespace HayraKosanlar.Web
         public HayraKosanlarWebAutoMapperProfile()
         {
             CreateMap<HelpRequestDto,CreateUpdateHelpRequestDto>();
+            CreateMap<Pages.HelpRequest.CreateModalModel.CreateHelpRequestViewModel, CreateUpdateHelpRequestDto>();
+            CreateMap<HelpRequestDto, Pages.HelpRequest.EditModalModel.EditHelpRequestViewModel>();
+            CreateMap<Pages.HelpRequest.EditModalModel.EditHelpRequestViewModel, CreateUpdateHelpRequestDto>();
             //Define your AutoMapper configuration here for the Web project.
         }
     }

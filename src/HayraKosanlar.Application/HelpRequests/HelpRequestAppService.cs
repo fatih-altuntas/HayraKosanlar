@@ -38,7 +38,7 @@ namespace HayraKosanlar.HelpRequests
         public async Task<PagedResultDto<HelpRequestDto>> ListByStatus(long status=1)
         {
             var HelpRequestList = await GetListAsync(new PagedAndSortedResultRequestDto());
-            HelpRequestList.Items =  HelpRequestList.Items.Where(x => x.Status == (HelpRequestStatus)status).ToList();
+            HelpRequestList.Items =  HelpRequestList.Items.Where(x => x.Status == (HelpRequestStatus)status).OrderByDescending(x=> x.CreationTime).ToList();
             HelpRequestList.TotalCount = HelpRequestList.Items.Count;
             return HelpRequestList;
         }

@@ -23,14 +23,16 @@ namespace HayraKosanlar.Web.Pages.HelpRequest
         private readonly IRepository<AppUser, Guid> _repositoryUser;
         public List<SelectListItem> Distributors { get; set; }
         public List<SelectListItem> Spotters { get; set; }
-        protected IdentityUserAppService _userAppService { get; }
+        protected IdentityUserAppService _identityUserAppService { get; }
 
 
-        public CreateModalModel(IHelpRequestAppService helpRequestAppService, IRepository<AppUser, Guid> repositoryUser, IdentityUserAppService userAppService)
+        public CreateModalModel(IHelpRequestAppService helpRequestAppService,
+            IRepository<AppUser, Guid> repositoryUser,
+            IdentityUserAppService identityUserAppService)
         {
             _helpRequestAppService = helpRequestAppService;
             _repositoryUser = repositoryUser;
-            _userAppService = userAppService;
+            _identityUserAppService = identityUserAppService;
         }
         public async Task OnGet()
         {
@@ -40,8 +42,9 @@ namespace HayraKosanlar.Web.Pages.HelpRequest
             var spotterList = new List<AppUser>();
             foreach (var item in userList)
             {
-                var isDistributor = _userAppService.GetRolesAsync(item.Id).GetAwaiter().GetResult().Items.Any(x=> x.Id == new Guid("{ADB55C76-AA76-E8B3-9324-39F8D03A60EC}"));
-                var isSpotter = _userAppService.GetRolesAsync(item.Id).GetAwaiter().GetResult().Items.Any(x => x.Id == new Guid("{2C9B0292-1B47-B26C-CF6C-39F8D036B3DE}"));
+                var itemRoles = _identityUserAppService.GetRolesAsync(item.Id).GetAwaiter().GetResult().Items;
+                var isDistributor = itemRoles.Any(x=> x.Id == new Guid("{ADB55C76-AA76-E8B3-9324-39F8D03A60EC}"));
+                var isSpotter = itemRoles.Any(x => x.Id == new Guid("{2C9B0292-1B47-B26C-CF6C-39F8D036B3DE}"));
                 if (isDistributor)
                     distributorList.Add(item);
                 if (isSpotter)
@@ -96,10 +99,10 @@ namespace HayraKosanlar.Web.Pages.HelpRequest
             public HelpRequestStatus Status { get; set; } = HelpRequestStatus.NewRequest;
             [SelectItems(nameof(Distributors))]
             [DisplayName("Daðýtýcý Seçiniz")]
-            public long DistributorId { get; set; }
+            public Guid DistributorId { get; set; }
             [SelectItems(nameof(Spotters))]
             [DisplayName("Denetleyici Seçiniz")]
-            public long SpotterId { get; set; }
+            public Guid SpotterId { get; set; }
         }
 
     }
