@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Identity;
 
 namespace HayraKosanlar.Web.Pages.HelpRequest
 {
@@ -21,18 +22,36 @@ namespace HayraKosanlar.Web.Pages.HelpRequest
         private readonly IHelpRequestAppService _helpRequestAppService;
         private readonly IRepository<AppUser, Guid> _repositoryUser;
         public List<SelectListItem> Distributors { get; set; }
+        public List<SelectListItem> Spotters { get; set; }
+        protected IdentityUserAppService _userAppService { get; }
 
-        public CreateModalModel(IHelpRequestAppService helpRequestAppService, IRepository<AppUser, Guid> repositoryUser)
+
+        public CreateModalModel(IHelpRequestAppService helpRequestAppService, IRepository<AppUser, Guid> repositoryUser, IdentityUserAppService userAppService)
         {
             _helpRequestAppService = helpRequestAppService;
             _repositoryUser = repositoryUser;
+            _userAppService = userAppService;
         }
         public async Task OnGet()
         {
             HelpRequest = new CreateHelpRequestViewModel();
-            var distributorLookup = await _repositoryUser.GetListAsync();
-            Distributors = distributorLookup.ToList()
+            var userList = await _repositoryUser.GetListAsync();
+            var distributorList = new List<AppUser>();
+            var spotterList = new List<AppUser>();
+            foreach (var item in userList)
+            {
+                var isDistributor = _userAppService.GetRolesAsync(item.Id).GetAwaiter().GetResult().Items.Any(x=> x.Id == new Guid("{ADB55C76-AA76-E8B3-9324-39F8D03A60EC}"));
+                var isSpotter = _userAppService.GetRolesAsync(item.Id).GetAwaiter().GetResult().Items.Any(x => x.Id == new Guid("{2C9B0292-1B47-B26C-CF6C-39F8D036B3DE}"));
+                if (isDistributor)
+                    distributorList.Add(item);
+                if (isSpotter)
+                    spotterList.Add(item);
+            }
+            Distributors = distributorList.ToList()
                 .Select(x => new SelectListItem(x.Name + " "+ x.Surname, x.Id.ToString()))
+                .ToList();
+            Spotters = spotterList.ToList()
+                .Select(x => new SelectListItem(x.Name + " " + x.Surname, x.Id.ToString()))
                 .ToList();
         }
 
@@ -78,6 +97,9 @@ namespace HayraKosanlar.Web.Pages.HelpRequest
             [SelectItems(nameof(Distributors))]
             [DisplayName("Daðýtýcý Seçiniz")]
             public long DistributorId { get; set; }
+            [SelectItems(nameof(Spotters))]
+            [DisplayName("Denetleyici Seçiniz")]
+            public long SpotterId { get; set; }
         }
 
     }
