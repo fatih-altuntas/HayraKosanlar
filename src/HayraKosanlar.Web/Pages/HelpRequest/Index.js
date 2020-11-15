@@ -87,9 +87,11 @@
     })
 
     $('select').on('change', function () {
-        debugger;
         status = this.value;
         dataTable.ajax.reload();
     });
+    if (!abp.auth.isGranted('HayraKosanlar.Create')) {
+        $('#status-dropdown').css("display", "none");
+    }
     
 });

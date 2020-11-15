@@ -10,6 +10,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Identity;
 using Volo.Abp.Users;
 
 namespace HayraKosanlar.HelpRequests
@@ -25,7 +26,11 @@ namespace HayraKosanlar.HelpRequests
     {
         private readonly ICurrentUser _currentUser;
         private readonly IRepository<AppUser, Guid> _repositoryUser;
-        public HelpRequestAppService(IRepository<HelpRequest,Guid> repository, ICurrentUser currentUser, IRepository<AppUser, Guid> repositoryUser) : base(repository)
+        protected IdentityUserAppService _identityUserAppService { get; }
+        public HelpRequestAppService(IRepository<HelpRequest,Guid> repository,
+            ICurrentUser currentUser,
+            IRepository<AppUser, Guid> repositoryUser,
+            IdentityUserAppService identityUserAppService) : base(repository)
         {
             GetPolicyName = HayraKosanlarPermissions.HelpRequest.List;
             GetListPolicyName = HayraKosanlarPermissions.HelpRequest.List;
@@ -33,12 +38,20 @@ namespace HayraKosanlar.HelpRequests
             UpdatePolicyName = HayraKosanlarPermissions.HelpRequest.Edit;
             _currentUser = currentUser;
             _repositoryUser = repositoryUser;
+            _identityUserAppService = identityUserAppService;
         }
 
         public async Task<PagedResultDto<HelpRequestDto>> ListByStatus(long status=1)
         {
             var HelpRequestList = await GetListAsync(new PagedAndSortedResultRequestDto());
-            HelpRequestList.Items =  HelpRequestList.Items.Where(x => x.Status == (HelpRequestStatus)status).OrderByDescending(x=> x.CreationTime).ToList();
+            if (_currentUser.Roles.Any(x => x.Contains("admin")))
+                HelpRequestList.Items = HelpRequestList.Items.Where(x => x.Status == (HelpRequestStatus)status).OrderByDescending(x => x.CreationTime).ToList();
+            else if (_currentUser.Roles.Any(x => x.Contains("spotter")))
+                HelpRequestList.Items = HelpRequestList.Items.Where(x => x.Status == HelpRequestStatus.WaitingForDetection && x.SpotterId == (Guid)_currentUser.Id).OrderByDescending(x => x.CreationTime).ToList();
+            else if (_currentUser.Roles.Any(x => x.Contains("distributor")))
+                HelpRequestList.Items = HelpRequestList.Items.Where(x => x.Status == HelpRequestStatus.DeliveryWaiting).OrderByDescending(x => x.CreationTime).ToList();
+            else
+                HelpRequestList = new PagedResultDto<HelpRequestDto>();
             HelpRequestList.TotalCount = HelpRequestList.Items.Count;
             return HelpRequestList;
         }

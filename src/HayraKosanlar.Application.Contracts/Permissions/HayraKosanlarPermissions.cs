@@ -8,6 +8,9 @@
             public const string List = GroupName + ".List";
             public const string Create = GroupName + ".Create";
             public const string Edit = GroupName + ".Edit";
+            public const string CreateEditSelectedSpotter = GroupName + ".CreateEditSelectedSpotter";
+            public const string CreateEditSelectedDistributor = GroupName + ".CreateEditSelectedDistributor";
+
         }
         public static class GiveAHelpRequest
         {

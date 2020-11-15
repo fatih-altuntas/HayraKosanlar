@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 using Volo.Abp.Domain.Repositories;
@@ -39,6 +40,26 @@ namespace HayraKosanlar.Web.Pages.HelpRequest
         public async Task OnGetAsync()
         {
             var helpRequestDto = await _helpRequestAppService.GetAsync(Id);
+            var userList = await _repositoryUser.GetListAsync();
+            var distributorList = new List<AppUser>();
+            var spotterList = new List<AppUser>();
+            foreach (var item in userList)
+            {
+                //düzelt
+                var itemRoles = _identityUserAppService.GetRolesAsync(item.Id).GetAwaiter().GetResult().Items;
+                var isDistributor = itemRoles.Any(x => x.Id == new Guid("{ADB55C76-AA76-E8B3-9324-39F8D03A60EC}"));
+                var isSpotter = itemRoles.Any(x => x.Id == new Guid("{2C9B0292-1B47-B26C-CF6C-39F8D036B3DE}"));
+                if (isDistributor)
+                    distributorList.Add(item);
+                if (isSpotter)
+                    spotterList.Add(item);
+            }
+            Distributors = distributorList.ToList()
+                .Select(x => new SelectListItem(x.Name + " " + x.Surname, x.Id.ToString()))
+                .ToList();
+            Spotters = spotterList.ToList()
+                .Select(x => new SelectListItem(x.Name + " " + x.Surname, x.Id.ToString()))
+                .ToList();
             HelpRequest = ObjectMapper.Map<HelpRequestDto, EditHelpRequestViewModel>(helpRequestDto);
         }
 
