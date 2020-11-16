@@ -64,7 +64,14 @@
                             [
                                 {
                                     text: l('Edit'),
-                                    visible: abp.auth.isGranted('HayraKosanlar.Edit'),
+                                    visible: abp.auth.isGranted('HayraKosanlar.EditButton'),
+                                    action: function (data) {
+                                        editModal.open({ id: data.record.id });
+                                    }
+                                },
+                                {
+                                    text: l('View'),
+                                    visible: abp.auth.isGranted('HayraKosanlar.ViewButton'),
                                     action: function (data) {
                                         editModal.open({ id: data.record.id });
                                     }
@@ -93,5 +100,4 @@
     if (!abp.auth.isGranted('HayraKosanlar.Create')) {
         $('#status-dropdown').css("display", "none");
     }
-    
 });

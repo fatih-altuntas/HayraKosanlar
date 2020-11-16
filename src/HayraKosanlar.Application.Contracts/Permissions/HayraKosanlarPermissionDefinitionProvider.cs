@@ -13,6 +13,10 @@ namespace HayraKosanlar.Permissions
             var helpRequestsPermission = hayraKosanlarPermissionGroup.AddPermission(HayraKosanlarPermissions.HelpRequest.List, L("Permission:HelpRequest.List"));
             helpRequestsPermission.AddChild(HayraKosanlarPermissions.HelpRequest.Create, L("Permission:HelpRequest.Create"));
             helpRequestsPermission.AddChild(HayraKosanlarPermissions.HelpRequest.Edit, L("Permission:HelpRequest.Edit"));
+            helpRequestsPermission.AddChild(HayraKosanlarPermissions.HelpRequest.ViewButton, L("Permission:HelpRequest.ViewButton"));
+            helpRequestsPermission.AddChild(HayraKosanlarPermissions.HelpRequest.EditButton, L("Permission:HelpRequest.EditButton"));
+            helpRequestsPermission.AddChild(HayraKosanlarPermissions.HelpRequest.SpotterDecisionView, L("Permission:HelpRequest.SpotterDecisionView"));
+            helpRequestsPermission.AddChild(HayraKosanlarPermissions.HelpRequest.DistributorDecisionView, L("Permission:HelpRequest.DistributorDecisionView"));
             helpRequestsPermission.AddChild(HayraKosanlarPermissions.HelpRequest.CreateEditSelectedDistributor, L("Permission:HelpRequest.CreateEditSelectedDistributor"));
             helpRequestsPermission.AddChild(HayraKosanlarPermissions.HelpRequest.CreateEditSelectedSpotter, L("Permission:HelpRequest.CreateEditSelectedSpotter"));
 

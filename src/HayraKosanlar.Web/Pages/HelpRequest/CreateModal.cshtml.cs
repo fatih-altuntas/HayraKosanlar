@@ -1,6 +1,7 @@
 using HayraKosanlar.HelpRequest;
 using HayraKosanlar.HelpRequests;
 using HayraKosanlar.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -12,9 +13,11 @@ using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
+using Volo.Abp.Users;
 
 namespace HayraKosanlar.Web.Pages.HelpRequest
 {
+    [AllowAnonymous]
     public class CreateModalModel : HayraKosanlarPageModel
     {
         [BindProperty]
@@ -24,15 +27,18 @@ namespace HayraKosanlar.Web.Pages.HelpRequest
         public List<SelectListItem> Distributors { get; set; }
         public List<SelectListItem> Spotters { get; set; }
         protected IdentityUserAppService _identityUserAppService { get; }
+        private readonly ICurrentUser _currentUser;
 
 
         public CreateModalModel(IHelpRequestAppService helpRequestAppService,
             IRepository<AppUser, Guid> repositoryUser,
-            IdentityUserAppService identityUserAppService)
+            IdentityUserAppService identityUserAppService,
+            ICurrentUser currentUser)
         {
             _helpRequestAppService = helpRequestAppService;
             _repositoryUser = repositoryUser;
             _identityUserAppService = identityUserAppService;
+            _currentUser = currentUser;
         }
         public async Task OnGet()
         {
@@ -40,23 +46,28 @@ namespace HayraKosanlar.Web.Pages.HelpRequest
             var userList = await _repositoryUser.GetListAsync();
             var distributorList = new List<AppUser>();
             var spotterList = new List<AppUser>();
-            foreach (var item in userList)
+            Distributors = new List<SelectListItem>();
+            Spotters = new List<SelectListItem>();
+            if (_currentUser.IsAuthenticated)
             {
-                //düzelt
-                var itemRoles = _identityUserAppService.GetRolesAsync(item.Id).GetAwaiter().GetResult().Items;
-                var isDistributor = itemRoles.Any(x=> x.Id == new Guid("{ADB55C76-AA76-E8B3-9324-39F8D03A60EC}"));
-                var isSpotter = itemRoles.Any(x => x.Id == new Guid("{2C9B0292-1B47-B26C-CF6C-39F8D036B3DE}"));
-                if (isDistributor)
-                    distributorList.Add(item);
-                if (isSpotter)
-                    spotterList.Add(item);
+                foreach (var item in userList)
+                {
+                    //düzelt
+                    var itemRoles = _identityUserAppService.GetRolesAsync(item.Id).GetAwaiter().GetResult().Items;
+                    var isDistributor = itemRoles.Any(x => x.Id == new Guid("{ADB55C76-AA76-E8B3-9324-39F8D03A60EC}"));
+                    var isSpotter = itemRoles.Any(x => x.Id == new Guid("{2C9B0292-1B47-B26C-CF6C-39F8D036B3DE}"));
+                    if (isDistributor)
+                        distributorList.Add(item);
+                    if (isSpotter)
+                        spotterList.Add(item);
+                }
+                Distributors = distributorList.ToList()
+                    .Select(x => new SelectListItem(x.Name + " " + x.Surname, x.Id.ToString()))
+                    .ToList();
+                Spotters = spotterList.ToList()
+                    .Select(x => new SelectListItem(x.Name + " " + x.Surname, x.Id.ToString()))
+                    .ToList();
             }
-            Distributors = distributorList.ToList()
-                .Select(x => new SelectListItem(x.Name + " "+ x.Surname, x.Id.ToString()))
-                .ToList();
-            Spotters = spotterList.ToList()
-                .Select(x => new SelectListItem(x.Name + " " + x.Surname, x.Id.ToString()))
-                .ToList();
         }
 
         public async Task<IActionResult> OnPostAsync()

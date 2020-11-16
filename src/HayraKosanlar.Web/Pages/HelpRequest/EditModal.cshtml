@@ -3,7 +3,10 @@
 @using HayraKosanlar.Web.Pages.HelpRequest
 @using Microsoft.Extensions.Localization
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using Microsoft.AspNetCore.Authorization
+@using HayraKosanlar.Permissions
 @model EditModalModel
+@inject IAuthorizationService AuthorizationService
 @inject IStringLocalizer<HayraKosanlarResource> L
 @{
     Layout = null;
@@ -12,18 +15,41 @@
     <abp-modal>
         <abp-modal-header title="@L["UpdateHelpRequest"].Value"></abp-modal-header>
         <abp-modal-body>
+            <input type="text" autofocus="autofocus" style="display:none" />
             <abp-input asp-for="Id" />
             <abp-form-content />
         </abp-modal-body>
-        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+            <abp-modal-footer buttons="@(AbpModalButtons.Cancel | AbpModalButtons.Save)"></abp-modal-footer>
     </abp-modal>
 </abp-dynamic-form>
+<head>
+    <style>
+        .disable-class {
+            background-color: #e9ecef;
+            opacity: 1;
+            cursor: default;
+            pointer-events:none;
+        }
+    </style>
+</head>
 <script>
-    debugger;
-    if (!(abp.auth.isGranted('HayraKosanlar.CreateEditSelectedDistributor'))) {
-        $("#HelpRequest_DistributorId").prop('disabled', true);
+    if ((abp.auth.isGranted('HayraKosanlar.ViewButton'))) {
+        $(".form-group .form-control").addClass("disable-class");
+        $('.form-group .form-control').each(function () {
+            $(this).attr('tabindex', '-1');
+        });
     }
-    if (!(abp.auth.isGranted('HayraKosanlar.CreateEditSelectedSpotter'))) {
-        $("#HelpRequest_SpotterId").prop('disabled', true);
+    if ((abp.auth.isGranted('HayraKosanlar.SpotterDecisionView'))) {
+        $("#HelpRequest_Status").removeClass("disable-class");
+        $("#HelpRequest_Status option[value='NewRequest']").remove();
+        $("#HelpRequest_Status option[value='DeliveryDone']").remove();
+        $("#HelpRequest_Status option[value='RequestDone']").remove();
+    }
+    if ((abp.auth.isGranted('HayraKosanlar.DistributorDecisionView'))) {
+        $("#HelpRequest_Status").removeClass("disable-class");
+        $("#HelpRequest_Status option[value='NewRequest']").remove();
+        $("#HelpRequest_Status option[value='WaitingForDetection']").remove();
+        $("#HelpRequest_Status option[value='Rejected']").remove();
+        $("#HelpRequest_Status option[value='RequestDone']").remove();
     }
 </script>

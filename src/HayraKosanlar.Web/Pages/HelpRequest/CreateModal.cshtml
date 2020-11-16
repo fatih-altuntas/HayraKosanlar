@@ -17,10 +17,9 @@
     </abp-modal>
 </abp-dynamic-form>
 <script>
-    if (!(abp.auth.isGranted('HayraKosanlar.CreateEditSelectedDistributor'))) {
-        $("#HelpRequest_DistributorId").prop('disabled', true);
-    }
-    if (!(abp.auth.isGranted('HayraKosanlar.CreateEditSelectedSpotter'))) {
-        $("#HelpRequest_SpotterId").prop('disabled', true);
+    if (!abp.currentUser.isAuthenticated) {
+        $("#HelpRequest_Status").parent().remove();
+        $("#HelpRequest_DistributorId").parent().remove();
+        $("#HelpRequest_SpotterId").parent().remove();
     }
 </script>

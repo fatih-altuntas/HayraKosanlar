@@ -22,7 +22,6 @@ namespace HayraKosanlar.GiveAHandRequests
         {
             GetPolicyName = HayraKosanlarPermissions.GiveAHelpRequest.List;
             GetListPolicyName = HayraKosanlarPermissions.GiveAHelpRequest.List;
-            CreatePolicyName = HayraKosanlarPermissions.GiveAHelpRequest.Create;
             UpdatePolicyName = HayraKosanlarPermissions.GiveAHelpRequest.Edit;
         }
     }

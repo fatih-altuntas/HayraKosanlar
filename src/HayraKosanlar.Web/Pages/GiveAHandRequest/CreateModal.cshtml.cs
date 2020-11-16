@@ -1,10 +1,12 @@
 using HayraKosanlar.GiveAHandRequests;
 using HayraKosanlar.HelpRequests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace HayraKosanlar.Web.Pages.GiveAHandRequest
 {
+    [AllowAnonymous]
     public class CreateModalModel : HayraKosanlarPageModel
     {
         [BindProperty]

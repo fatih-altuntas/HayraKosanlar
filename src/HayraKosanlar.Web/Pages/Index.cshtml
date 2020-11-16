@@ -19,13 +19,13 @@
     <h1>@L["Welcome"]</h1>
     <div class="row">
         <div class="col-md-6 mx-auto">
-            <p>@L["LongWelcomeMessage"]</p>
-            <hr class="my-4"/>
+            <p>Bu bölümde karşılama mesajı olacak.Bu bölümde karşılama mesajı olacak.Bu bölümde karşılama mesajı olacak.Bu bölümde karşılama mesajı olacak.</p>
+            <hr class="my-4" />
         </div>
     </div>
-    <a href="https://abp.io?ref=tmpl" target="_blank" class="btn btn-primary px-4">abp.io</a>
+    <abp-button id="NewHelpRequestButton" text="@L["NewHelpRequest"].Value" icon="plus" button-type="Primary" />
+    <abp-button id="NewGiveAHandRequestButton" text="@L["NewGiveAHandRequest"].Value" icon="plus" button-type="Primary" />
     @if (!CurrentUser.IsAuthenticated)
     {
-        <a abp-button="Primary" href="~/Account/Login" class="px-4"><i class="fa fa-sign-in"></i> @L["Login"]</a>
-    }
+<a abp-button="Primary" href="~/Account/Login" class="px-4"><i class="fa fa-sign-in"></i> @L["AdminLogin"]</a>}
 </div>

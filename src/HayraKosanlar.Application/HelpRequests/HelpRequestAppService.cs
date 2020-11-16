@@ -34,7 +34,6 @@ namespace HayraKosanlar.HelpRequests
         {
             GetPolicyName = HayraKosanlarPermissions.HelpRequest.List;
             GetListPolicyName = HayraKosanlarPermissions.HelpRequest.List;
-            CreatePolicyName = HayraKosanlarPermissions.HelpRequest.Create;
             UpdatePolicyName = HayraKosanlarPermissions.HelpRequest.Edit;
             _currentUser = currentUser;
             _repositoryUser = repositoryUser;
