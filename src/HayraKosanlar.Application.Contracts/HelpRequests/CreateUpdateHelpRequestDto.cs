@@ -8,6 +8,7 @@ namespace HayraKosanlar.HelpRequests
 {
     public class CreateUpdateHelpRequestDto
     {
+        private const int MaxDescriptionLength = 5000;
         [Required]
         public string Name { get; set; }
         [Required]
@@ -16,7 +17,8 @@ namespace HayraKosanlar.HelpRequests
         [Range(10000000000,99999999999,ErrorMessage = "Please enter your 11-digit ID number")]
         public string IdentityNumber { get; set; }
         [Required]
-        public long TownId { get; set; }
+        [StringLength(MaxDescriptionLength)]
+        public string Address { get; set; }
         [Required]
         public string Birthplace { get; set; }
         [Required]

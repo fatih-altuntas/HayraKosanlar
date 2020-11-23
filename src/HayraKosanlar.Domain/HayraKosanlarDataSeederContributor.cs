@@ -40,7 +40,6 @@ namespace HayraKosanlar
                     PhoneNumber = "5356668877",
                     Status = HelpRequest.HelpRequestStatus.NewRequest,
                     Surname = "Evren",
-                    TownId = 18,
                     ExtraInformation = "Okul için 200 tl harçlık yollarmısınız"
                 });
                 await _helpRequestRepository.InsertAsync(new HelpRequests.HelpRequest
@@ -58,7 +57,6 @@ namespace HayraKosanlar
                     PhoneNumber = "5356668677",
                     Status = HelpRequest.HelpRequestStatus.NewRequest,
                     Surname = "Aydın",
-                    TownId = 18,
                     ExtraInformation = "Temel gıda ihtiyacımı karşılarmısınız"
                 });
             }

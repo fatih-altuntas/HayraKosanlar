@@ -78,8 +78,10 @@ namespace HayraKosanlar.Web.Pages.HelpRequest
             [Required]
             [Range(10000000000, 99999999999, ErrorMessage = "Please enter your 11-digit ID number")]
             public string IdentityNumber { get; set; }
+            [StringLength(5000)]
+            [TextArea]
             [Required]
-            public long TownId { get; set; }
+            public string Address { get; set; }
             [Required]
             public string Birthplace { get; set; }
             [Required]
@@ -99,6 +101,7 @@ namespace HayraKosanlar.Web.Pages.HelpRequest
             public string PartnerName { get; set; }
             [Required]
             public long ChildrenCount { get; set; }
+            [TextArea]
             public string ExtraInformation { get; set; }
             [Required]
             public HelpRequestStatus Status { get; set; } = HelpRequestStatus.NewRequest;
