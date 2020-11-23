@@ -6,6 +6,6 @@ namespace HayraKosanlar.Web
     [Dependency(ReplaceServices = true)]
     public class HayraKosanlarBrandingProvider : DefaultBrandingProvider
     {
-        public override string AppName => "HayraKosanlar";
+        public override string AppName => "Kocaeli Yardım Severler";
     }
 }
